@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: 'ocpp-webhook',
+            name: 'turbo-station-ocpp-webhook',
             script: '/var/www/turbo-station-ocpp-webhook/venv/bin/python3',
             args: 'webhook_worker.py',
             cwd: '/var/www/turbo-station-ocpp-webhook',
@@ -23,7 +23,7 @@ module.exports = {
             merge_logs: true,
         },
         {
-            name: 'ocpp-webhook_dev',
+            name: 'turbo-station-ocpp-webhook_dev',
             script: '/var/www/turbo-station-ocpp-webhook/venv/bin/python3',
             args: 'webhook_worker.py',
             cwd: '/var/www/turbo-station-ocpp-webhook',
