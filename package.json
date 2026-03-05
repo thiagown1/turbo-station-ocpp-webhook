@@ -1,0 +1,15 @@
+{
+    "name": "turbo-station-ocpp-webhook",
+    "version": "1.0.0",
+    "description": "Webhook Worker Service for Turbo Station OCPP",
+    "main": "webhook_worker.py",
+    "scripts": {
+        "start": "python webhook_worker.py"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thiagown1/turbo-station-ocpp-webhook.git"
+    },
+    "author": "Turbo Station",
+    "license": "ISC"
+}
