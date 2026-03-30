@@ -267,6 +267,30 @@ class WebhookQueueManager:
         
         return await self.enqueue('/api/webhook/meter-values', payload, priority='normal', metadata=metadata)
     
+    async def enqueue_heartbeat(self, charge_point_id: str,
+                                timestamp: str) -> bool:
+        """
+        Enqueue Heartbeat webhook for idle fee billing.
+        
+        Args:
+            charge_point_id: Charger ID
+            timestamp: Heartbeat timestamp
+        
+        Returns:
+            True if enqueued successfully
+        """
+        payload = {
+            'charge_point_id': charge_point_id,
+            'timestamp': timestamp,
+        }
+        
+        metadata = {
+            'charge_point_id': charge_point_id,
+            'event_type': 'heartbeat'
+        }
+        
+        return await self.enqueue('/api/webhook/heartbeat', payload, priority='low', metadata=metadata)
+    
     async def dequeue(self, priority: str = 'high', timeout: int = 1) -> Optional[Dict[str, Any]]:
         """
         Dequeue a webhook message (used by worker).

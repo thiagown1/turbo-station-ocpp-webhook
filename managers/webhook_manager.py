@@ -279,6 +279,29 @@ class WebhookManager:
         )
         
         return await self.send_webhook('/api/webhook/meter-values', payload, priority='normal')
+    
+    async def send_heartbeat(self, charge_point_id: str, 
+                             timestamp: str) -> Dict[str, Any]:
+        """
+        Send Heartbeat webhook for idle fee billing.
+        
+        Args:
+            charge_point_id: Charger ID
+            timestamp: Heartbeat timestamp
+        
+        Returns:
+            Webhook result
+        """
+        payload = {
+            'charge_point_id': charge_point_id,
+            'timestamp': timestamp,
+        }
+        
+        root_logger.debug(
+            f"📤 Sending Heartbeat webhook: charger={charge_point_id}"
+        )
+        
+        return await self.send_webhook('/api/webhook/heartbeat', payload, priority='low')
 
 
 # Global singleton instance
